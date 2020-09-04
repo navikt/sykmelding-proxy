@@ -38,8 +38,10 @@ spec:
         - host: api-gw-q1.oera.no 
       rules:
         - application: sykmeldinger-backend
+  envFrom:
+    - secret: sykmeldinger-backend-proxy-q1-apigw-key # Will expose SERVICE_GATEWAY_KEY inside the pod
   env:
     - name: ALLOWED_ORIGINS
-      value: ""
+      value: "https://tjenester-q1.nav.no,https://spvedtak.dev.nav.no/,https://reisetilskudd.dev.nav.no/"
     - name: SERVICE_GATEWAY_URL
       value: https://api-gw-q1.oera.no/sykmeldinger-backend-api/
