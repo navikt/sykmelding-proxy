@@ -44,4 +44,4 @@ spec:
     - name: ALLOWED_ORIGINS
       value: "https://tjenester-q1.nav.no,https://spvedtak.dev.nav.no,https://reisetilskudd.dev.nav.no"
     - name: SERVICE_GATEWAY_URL
-      value: https://api-gw-q1.oera.no/sykmeldinger-backend-api/
+      value: https://api-gw-q1.oera.no/sykmeldinger-backend-api
