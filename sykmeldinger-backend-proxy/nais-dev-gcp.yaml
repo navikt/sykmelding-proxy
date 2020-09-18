@@ -42,6 +42,6 @@ spec:
     - secret: sykmeldinger-backend-proxy-q1-apigw-key # Will expose SERVICE_GATEWAY_KEY inside the pod
   env:
     - name: ALLOWED_ORIGINS
-      value: "https://tjenester-q1.nav.no,https://www-q1.dev.nav.no"
+      value: "https://tjenester-q1.nav.no,https://www-q1.dev.nav.no,https://flex-vedtak-mock.dev.nav.no"
     - name: SERVICE_GATEWAY_URL
       value: https://api-gw-q1.oera.no/sykmeldinger-backend
