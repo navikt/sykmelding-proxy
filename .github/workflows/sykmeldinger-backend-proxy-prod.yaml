@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - sykmeldinger-backend-proxy/**
-      - .github/workflows/sykmeldinger-backend-proxy.yaml
+      - .github/workflows/sykmeldinger-backend-proxy-prod.yaml
 env:
   APP: sykmeldinger-backend-proxy
 jobs:
