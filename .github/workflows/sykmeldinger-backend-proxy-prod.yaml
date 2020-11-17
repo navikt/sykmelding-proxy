@@ -1,6 +1,8 @@
 name: Bygg sykmeldinger-backend-proxy
 on:
   push:
+    branches:
+      - main
     paths:
       - sykmeldinger-backend-proxy/**
       - .github/workflows/sykmeldinger-backend-proxy.yaml
@@ -40,25 +42,46 @@ jobs:
         run: docker push ${IMAGE}
 
   deploy-to-dev:
-    name: Deploy to dev-gcp
+    name: deploy to dev-gcp
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Checkout code
+      - name: checkout code
         uses: actions/checkout@master
-      - name: Download VERSION-artifact
+      - name: download version-artifact
         uses: actions/download-artifact@v2
         with:
-          name: VERSION.txt
+          name: version.txt
           path: .
-      - run: echo "::set-env name=VERSION::"`cat VERSION.txt`""
-      - run: echo "::set-env name=IMAGE::"docker.pkg.github.com/${GITHUB_REPOSITORY}/$APP:$VERSION""
-      - name: Deploy to dev-gcp
+      - run: echo "::set-env name=version::"`cat version.txt`""
+      - run: echo "::set-env name=image::"docker.pkg.github.com/${github_repository}/$app:$version""
+      - name: deploy to dev-gcp
         uses: nais/deploy/actions/deploy@master
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-gcp
-          RESOURCE: sykmeldinger-backend-proxy/nais-dev-gcp.yaml
+          apikey: ${{ secrets.nais_deploy_apikey }}
+          cluster: dev-gcp
+          resource: sykmeldinger-backend-proxy/nais-dev-gcp.yaml
+
+  deploy-to-dev:
+    name: deploy to prod-gcp
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout code
+        uses: actions/checkout@master
+      - name: download version-artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: version.txt
+          path: .
+      - run: echo "::set-env name=version::"`cat version.txt`""
+      - run: echo "::set-env name=image::"docker.pkg.github.com/${github_repository}/$app:$version""
+      - name: deploy to prod-gcp
+        uses: nais/deploy/actions/deploy@master
+        env:
+          apikey: ${{ secrets.nais_deploy_apikey }}
+          cluster: prod-gcp
+          resource: sykmeldinger-backend-proxy/nais-prod-gcp.yaml
 
   tag-image-as-latest:
     if: github.ref == 'refs/heads/master'
