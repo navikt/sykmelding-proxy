@@ -58,9 +58,9 @@ jobs:
       - name: deploy to dev-gcp
         uses: nais/deploy/actions/deploy@master
         env:
-          apikey: ${{ secrets.nais_deploy_apikey }}
-          cluster: dev-gcp
-          resource: sykmeldinger-backend-proxy/nais-dev-gcp.yaml
+          APIKEY: ${{ secrets.nais_deploy_apikey }}
+          CLUSTER: dev-gcp
+          RESOURCE: sykmeldinger-backend-proxy/nais-dev-gcp.yaml
 
   deploy-to-prod:
     name: deploy to prod-gcp
@@ -79,9 +79,9 @@ jobs:
       - name: deploy to prod-gcp
         uses: nais/deploy/actions/deploy@master
         env:
-          apikey: ${{ secrets.nais_deploy_apikey }}
-          cluster: prod-gcp
-          resource: sykmeldinger-backend-proxy/nais-prod-gcp.yaml
+          APIKEY: ${{ secrets.nais_deploy_apikey }}
+          CLUSTER: prod-gcp
+          RESOURCE: sykmeldinger-backend-proxy/nais-prod-gcp.yaml
 
   tag-image-as-latest:
     if: github.ref == 'refs/heads/master'
