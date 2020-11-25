@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val ktorVersion = "1.4.0"
@@ -17,6 +19,10 @@ plugins {
 repositories {
     mavenCentral()
     jcenter()
+    maven(url = "https://dl.bintray.com/kotlin/ktor")
+    maven(url = "https://dl.bintray.com/spekframework/spek-dev")
+    maven(url = "https://packages.confluent.io/maven/")
+    maven(url = "https://kotlin.bintray.com/kotlinx")
 }
 
 dependencies {
@@ -43,6 +49,13 @@ dependencies {
 }
 
 
+tasks.withType<Test> {
+    useJUnitPlatform {
+        includeEngines("spek2")
+    }
+    testLogging.showStandardStreams = true
+}
+
 tasks.withType<Wrapper> {
     gradleVersion = "6.4.1"
 }
@@ -52,7 +65,17 @@ tasks.withType<Jar> {
 }
 
 tasks {
+
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "14"
     }
+
+    withType<ShadowJar> {
+        isZip64 = true
+        transform(ServiceFileTransformer::class.java) {
+            setPath("META-INF/cxf")
+            include("bus-extensions.txt")
+        }
+    }
 }
+

@@ -1,0 +1,11 @@
+name: Bygg sykmelding-fss-proxy
+defaults:
+  run:
+    working-directory: sykmelding-fss-proxy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - sykmelding-fss-proxy/**
+      - .github/workflows/sykmelding-fss-proxy-prod.yaml
