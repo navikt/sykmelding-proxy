@@ -12,6 +12,7 @@ on:
       - .github/workflows/sykmelding-fss-proxy-dev.yaml
 env:
   APP: sykmelding-fss-proxy
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/sykmelding-fss-proxy:${{ github.sha }}
 jobs:
   build:
     name: checkout code and create docker tag
@@ -40,3 +41,22 @@ jobs:
           ORG_GRADLE_PROJECT_githubPassword: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./gradlew test
+      - name: Build jar
+        env:
+          ORG_GRADLE_PROJECT_githubUser: x-access-token
+          ORG_GRADLE_PROJECT_githubPassword: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew shadowJar -x test
+      - name: Build and publish docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build --tag ${IMAGE} .
+          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
+      - name: Deploy to preprod
+        uses: nais/deploy/actions/deploy@master
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-fss
+          RESOURCE: nais/nais-fss-dev.yaml
