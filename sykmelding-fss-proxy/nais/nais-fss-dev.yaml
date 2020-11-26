@@ -5,7 +5,7 @@ metadata:
   namespace: teamsykmelding
   labels:
     team: teamsykmelding
-spek:
+spec:
   image: {{ image }}
   port: 8080
   liveness:
