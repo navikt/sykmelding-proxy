@@ -1,0 +1,50 @@
+curl --request PUT \
+  --url https://api-management.nais.adeo.no/rest/v2/katalog/applikasjoner/sykmelding-fss-proxy \
+  --header 'authorization: Basic ......' \
+  --header 'content-type: application/json' \
+  --header 'kilde: noFasit' \
+  --data '{
+  "eier": "Group_3a541678-8965-45c4-844b-486a8b9b94a3",
+  "sone": "FraFss",
+  "tjenester": [
+    {
+      "navn": "sykmelding-fss-proxy",
+      "endepunkt": "https://sykmelding-fss-proxy.nais.preprod.local/",
+      "miljo": "q1"
+    },
+    {
+      "navn": "sykmelding-fss-proxy",
+      "endepunkt": "https://sykmelding-fss-proxy.nais.adeo.no/",
+      "miljo": "p"
+    }
+  ],
+  "konsumenter": [
+    {
+      "navn": "syfosmaltinn",
+      "tjeneste": "sykmelding-fss-proxy"
+    }
+  ]
+}'
+
+
+curl --request PUT \
+  --url https://api-management.nais.adeo.no/rest/v2/register/deploy/sykmelding-fss-proxy \
+  --header 'authorization: Basic ......' \
+  --header 'content-type: application/json' \
+  --header 'kilde: noFasit' \
+  --data '{
+  "gatewayEnv": "p",
+  "tilbyderEnv": "p",
+  "kommentar": "Tilgang til sykmelding-fss-proxy i prod"
+}'
+
+curl --request PUT \
+  --url https://api-management.nais.adeo.no/rest/v2/register/deploy/sykmelding-fss-proxy \
+  --header 'authorization: Basic ......' \
+  --header 'content-type: application/json' \
+  --header 'kilde: noFasit' \
+  --data '{
+  "gatewayEnv": "q1",
+  "tilbyderEnv": "q1",
+  "kommentar": "Tilgang til sykmelding-fss-proxy i dev"
+}'
