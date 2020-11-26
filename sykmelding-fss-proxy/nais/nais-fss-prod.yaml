@@ -1,0 +1,41 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: sykmelding-fss-proxy
+  namespace: teamsykmelding
+  labels:
+    team: teamsykmelding
+spec:
+  image: {{ image }}
+  port: 8080
+  liveness:
+    path: is_alive
+    initialDelay: 20
+    timeout: 1
+    periodSeconds: 5
+    failureTreshold: 10
+  readiness:
+    path: is_ready
+    initialDelay: 20
+    timeout: 1
+  resouces:
+    limits:
+      cpu: 1200m
+      memory: 1Gi
+    requests:
+      cpu: 1024m
+      memory: 512Mi
+  vault:
+    enabled: false
+  ingresses:
+    - "https://sykmelding-fss-proxy.nais.adeo.no"
+  replicas:
+    min: 2
+    max: 3
+    cpuTresholdPercentage: 90
+  prometheus:
+    enabled: true
+    path: /prometheus
+  env:
+    - name: PROXY_NARMESTELEDER
+      value: http://syfonarmesteleder.default
