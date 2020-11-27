@@ -40,4 +40,4 @@ spec:
     - name: PROXY_NARMESTELEDER
       value: http://syfonarmesteleder.default
     - name: PROXY_JURIDISKLOGG
-      value: https://app-q1.adeo.no/juridisklogg/api/rest/loggs
+      value: https://app-q1.adeo.no/
