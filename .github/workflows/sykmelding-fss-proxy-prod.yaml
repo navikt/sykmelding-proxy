@@ -56,7 +56,7 @@ jobs:
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: prod-fss
+          CLUSTER: dev-fss
           RESOURCE: sykmelding-fss-proxy/nais/nais-fss-dev.yaml
       - name: Deploy to prod
         uses: nais/deploy/actions/deploy@master
