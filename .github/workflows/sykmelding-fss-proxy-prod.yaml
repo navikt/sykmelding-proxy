@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - sykmelding-fss-proxy/**
-      - .github/workflows/sykmelding-fss-proxy-dev.yaml
+      - .github/workflows/sykmelding-fss-proxy-prod.yaml
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/sykmelding-fss-proxy:${{ github.sha }}
 jobs:
