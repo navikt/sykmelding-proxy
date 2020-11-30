@@ -39,3 +39,5 @@ spec:
   env:
     - name: PROXY_NARMESTELEDER
       value: http://syfonarmesteleder.default
+    - name: PROXY_JURIDISKLOGG
+      value: https://app.adeo.no

@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - sykmelding-fss-proxy/**
-      - .github/workflows/sykmelding-fss-proxy-dev.yaml
+      - .github/workflows/sykmelding-fss-proxy-prod.yaml
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/sykmelding-fss-proxy:${{ github.sha }}
 jobs:
@@ -56,7 +56,7 @@ jobs:
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-fss
+          CLUSTER: prod-fss
           RESOURCE: sykmelding-fss-proxy/nais/nais-fss-dev.yaml
       - name: Deploy to prod
         uses: nais/deploy/actions/deploy@master
