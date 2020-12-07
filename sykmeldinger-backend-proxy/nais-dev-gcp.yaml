@@ -3,7 +3,7 @@ kind: "Application"
 metadata:
   name: sykmeldinger-backend-proxy
   namespace: teamsykmelding
- labels:
+  labels:
     team: teamsykmelding
 spec:
   image: {{ image }}
