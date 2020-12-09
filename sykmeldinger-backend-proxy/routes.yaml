@@ -1,8 +1,8 @@
-GET:
-  - api/v1/sykmeldinger
-  - api/v1/syforest/sykmeldinger
-POST:
-  - api/v1/sykmeldinger/{sykmeldingId}/bekreft
-  - sykmeldinger/{sykmeldingId}/status
-  - sykmeldinger/{sykmeldingId}/bekreft
-  - sykmeldinger/{sykmeldingId}/send
+get:
+    - api/v1/sykmeldinger
+    - api/v1/syforest/sykmeldinger
+post:
+    - api/v1/sykmeldinger/{sykmeldingId}/bekreft
+    - sykmeldinger/{sykmeldingId}/status
+    - sykmeldinger/{sykmeldingId}/bekreft
+    - sykmeldinger/{sykmeldingId}/send
