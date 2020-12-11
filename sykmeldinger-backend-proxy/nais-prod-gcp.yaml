@@ -16,21 +16,21 @@ spec:
     - "https://sykmeldinger-backend-proxy.nav.no/"
   liveness:
     path: /isAlive
-    initialDelay: 10
+    initialDelay: 90
     timeout: 5
     periodSeconds: 5
     failureThreshold: 30
   readiness:
     path: /isReady
-    initialDelay: 10
+    initialDelay: 90
     periodSeconds: 5
     timeout: 5
   resources:
     limits:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 1000m
+      memory: 1024Mi
     requests:
-      cpu: 400m
+      cpu: 500m
       memory: 768Mi
   accessPolicy:
     outbound:
