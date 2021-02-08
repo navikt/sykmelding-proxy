@@ -3,6 +3,7 @@ get:
     - api/v1/syforest/sykmeldinger
 post:
     - api/v1/sykmeldinger/{sykmeldingId}/bekreft
+    - api/v1/sykmeldinger/{sykmeldingId}/avbryt
     - sykmeldinger/{sykmeldingId}/status
     - sykmeldinger/{sykmeldingId}/bekreft
     - sykmeldinger/{sykmeldingId}/send
