@@ -13,7 +13,7 @@ spec:
     cpuThresholdPercentage: 90
   port: 8080
   ingresses:
-    - "https://sykmeldinger-backend-proxy.nav.no/"
+    - "https://sykmeldinger-backend-proxy.nav.no"
   liveness:
     path: /isAlive
     initialDelay: 90
