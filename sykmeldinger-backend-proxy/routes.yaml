@@ -1,5 +1,6 @@
 get:
     - api/v1/sykmeldinger
+    - api/v1/sykmeldinger/{sykmeldingId}
     - api/v1/syforest/sykmeldinger
     - api/v1/syforest/arbeidsforhold
     - api/v1/syforest/brukerinformasjon
