@@ -9,3 +9,4 @@ post:
     - api/v1/sykmeldinger/{sykmeldingId}/avbryt
     - api/v1/sykmeldinger/{sykmeldingId}/gjenapne
     - api/v1/sykmeldinger/{sykmeldingId}/send
+    - api/v2/sykmeldinger/{sykmeldingId}/send
